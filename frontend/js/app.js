@@ -3,8 +3,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const priceDisplay = document.getElementById('priceDisplay');
   const newsFeed = document.getElementById('newsFeed');
 
+  // Clear existing options to avoid duplicates
+  while (stateSelect.firstChild) {
+    stateSelect.removeChild(stateSelect.firstChild);
+  }
+
   // Populate states
-  const states = ['Delhi', 'Maharashtra', 'Tamil Nadu', 'West Bengal', 'Karnataka', /* Add all 36 states/UTs */];
+  const states = ['Delhi', 'Punjab', 'Bihar', 'Maharashtra', 'Uttar Pradesh'];
   states.forEach(state => {
     const option = document.createElement('option');
     option.value = state;
@@ -16,9 +21,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     logAnalytics('state_select', state);
     const prices = await fetchCurrentPrices(state);
     if (prices) {
-      priceDisplay.innerHTML = prices.map(p => `
-        <p>${p.karat}: ₹${p.price}/g (${p.source})</p>
-      `).join('');
+      priceDisplay.innerHTML = prices.map(p => {
+        return '<p>' + p.karat + ': ₹' + p.price + '/g (' + p.source + ')</p>';
+      }).join('');
     } else {
       priceDisplay.innerHTML = '<p>Error loading prices. Showing last known data.</p>';
     }
@@ -30,9 +35,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const news = await fetchNews();
     if (news) {
-      newsFeed.innerHTML = news.map(n => `
-        <li><a href="${n.url}" target="_blank" class="text-blue-500">${n.title}</a></li>
-      `).join('');
+      newsFeed.innerHTML = news.map(n => {
+        return '<li><a href="' + n.url + '" target="_blank" class="text-blue-500">' + n.title + '</a></li>';
+      }).join('');
     } else {
       newsFeed.innerHTML = '<li>Error loading news.</li>';
     }
