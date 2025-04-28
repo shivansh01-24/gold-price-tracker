@@ -1,20 +1,13 @@
-const frontendConfig = {
-  apiBaseUrl: 'http://localhost:3000/api',
-  chartOptions: {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        type: 'time',
-        time: {
-          unit: 'day',
-        },
-      },
-      y: {
-        beginAtZero: true,
+const config = {
+  apiBaseUrl: 'http://localhost:3000/api', // Update to Render URL after deployment
+  chart: {
+    type: 'line',
+    options: {
+      responsive: true,
+      scales: {
+        x: { title: { display: true, text: 'Date' } },
+        y: { title: { display: true, text: 'Price (INR/g)' } },
       },
     },
   },
 };
-
-export default frontendConfig;

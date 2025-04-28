@@ -1,0 +1,45 @@
+Price Page:
+URL: https://www.goodreturns.in/gold-rates/delhi.html
+
+Important Structure:
+- Main container: <div class="gold-rate-container">
+- Each gold entry: <div class="gold-each-container">
+  - Gold type (e.g., "22K Gold", "24K Gold", "18K Gold") is inside:
+    - <div class="gold-top"> → <p class="gold-common-head">
+  - Gold price (e.g., "₹8,955", "₹9,768", "₹7,327") is inside:
+    - <div class="gold-bottom"> → <p class="gold-common-head">
+
+Details:
+- For every gold type (22K, 24K, 18K), the structure is repeated.
+- Inside each "gold-each-container":
+  - First <p class="gold-common-head"> (under gold-top) contains the **gold type**.
+  - Second <p class="gold-common-head"> (under gold-bottom) contains the **gold price**.
+
+Examples from the HTML:
+- 22K Gold → ₹8,955
+- 24K Gold → ₹9,768
+- 18K Gold → ₹7,327
+
+Extra:
+- Price change (e.g., -₹62) is found inside <div class="gold-stock gold-down"> under gold-bottom (optional to scrape).
+
+
+
+
+
+News Page:
+URL: https://www.goodreturns.in/news/gold/
+
+Important Structure:
+- Each news article headline is inside <li> → <div class="oi-gd-category-news-text"> → <a> tag.
+  - The text inside <a> is the **news title**.
+  - The href attribute of <a> is the **link** to the full article.
+
+Details:
+- Headlines can be collected by finding all <a> tags inside <div class="oi-gd-category-news-text"> within <li> tags.
+- href is a relative link (starts with /news/...), so the full link = base URL + href.
+
+Example from the HTML:
+- Title: "IDBI Bank Q4 Results: Net Profit Up 26% Rs 2,051 Cr; Proposes 21% Dividend After Record-Breaking FY25"
+- Link: /news/idbi-bank-q4-results-net-profit-up-26-rs-2-051-cr-proposes-21-dividend-after-record-breaking-fy2-1424089.html
+- Full Link: https://www.goodreturns.in/news/idbi-bank-q4-results-net-profit-up-26-rs-2-051-cr-proposes-21-dividend-after-record-breaking-fy2-1424089.html

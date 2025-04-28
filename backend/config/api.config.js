@@ -1,6 +1,9 @@
-const apiConfig = {
-  port: process.env.PORT || 3000,
-  cacheDuration: 600, // cache duration in seconds (e.g., 10 minutes)
+module.exports = {
+  cacheTTL: 600, // 10 minutes in seconds
+  endpoints: {
+    prices: '/api/prices',
+    news: '/api/news',
+    analytics: '/api/analytics',
+    feedback: '/api/feedback',
+  },
 };
-
-module.exports = apiConfig;
